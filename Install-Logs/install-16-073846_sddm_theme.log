@@ -1,0 +1,5 @@
+[33m[NOTE](B[m Setting up the login screen.
+/etc/sddm.conf does not exist, creating a new one.
+Added [Theme] section with Current=simple_sddm_2 in /etc/sddm.conf
+Added [General] section with InputMethod=qtvirtualkeyboard in /etc/sddm.conf
+[32m[OK](B[m - [35mAdditional [33msimple_sddm_2 SDDM Theme(B[m successfully installed.

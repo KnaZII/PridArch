@@ -1,0 +1,1150 @@
+[34m[INFO](B[m Package aylurs-gtk-shell not installed, skipping.
+[33m[NOTE](B[m removing dunst ...
+checking dependencies...
+
+Package (1)  Old Version  Net Change
+
+dunst        1.12.2-1      -0.27 MiB
+
+Total Removed Size:  0.27 MiB
+
+:: Do you want to remove these packages? [Y/n] 
+:: Processing package changes...
+removing dunst...
+:: Running post-transaction hooks...
+(1/2) Reloading user manager configuration...
+(2/2) Arming ConditionNeedsUpdate...
+checking dependencies...
+
+Package (1)  Old Version  Net Change
+
+dunst        1.12.2-1      -0.27 MiB
+
+Total Removed Size:  0.27 MiB
+
+:: Do you want to remove these packages? [Y/n] 
+:: Processing package changes...
+removing dunst...
+:: Running post-transaction hooks...
+(1/2) Reloading user manager configuration...
+(2/2) Arming ConditionNeedsUpdate...
+[1A[K[32m[OK](B[m dunst removed.
+[34m[INFO](B[m Package cachyos-hyprland-settings not installed, skipping.
+[33m[NOTE](B[m removing mako ...
+checking dependencies...
+
+Package (1)  Old Version  Net Change
+
+mako         1.10.0-1      -0.13 MiB
+
+Total Removed Size:  0.13 MiB
+
+:: Do you want to remove these packages? [Y/n] 
+:: Processing package changes...
+removing mako...
+:: Running post-transaction hooks...
+(1/2) Reloading user manager configuration...
+(2/2) Arming ConditionNeedsUpdate...
+checking dependencies...
+
+Package (1)  Old Version  Net Change
+
+mako         1.10.0-1      -0.13 MiB
+
+Total Removed Size:  0.13 MiB
+
+:: Do you want to remove these packages? [Y/n] 
+:: Processing package changes...
+removing mako...
+:: Running post-transaction hooks...
+(1/2) Reloading user manager configuration...
+(2/2) Arming ConditionNeedsUpdate...
+[1A[K[32m[OK](B[m mako removed.
+[33m[NOTE](B[m removing rofi ...
+error: target not found: rofi
+[34m[INFO](B[m Package wallust-git not installed, skipping.
+[34m[INFO](B[m Package rofi-lbonn-wayland not installed, skipping.
+[34m[INFO](B[m Package rofi-lbonn-wayland-git not installed, skipping.
+Sync Explicit (1): gvfs-mtp-1.57.2-4
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)     New Version  Net Change  Download Size
+
+extra/gvfs-mtp  1.57.2-4       0.15 MiB       0.05 MiB
+
+Total Download Size:   0.05 MiB
+Total Installed Size:  0.15 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ gvfs-mtp-1.57.2-4-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing gvfs-mtp...
+:: Running post-transaction hooks...
+(1/3) Reloading user manager configuration...
+(2/3) Arming ConditionNeedsUpdate...
+(3/3) Reloading GVFS config...
+Sync Explicit (1): hyprpolkitagent-0.1.3-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)            New Version  Net Change  Download Size
+
+extra/hyprpolkitagent  0.1.3-1        0.19 MiB       0.07 MiB
+
+Total Download Size:   0.07 MiB
+Total Installed Size:  0.19 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ hyprpolkitagent-0.1.3-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing hyprpolkitagent...
+:: Running post-transaction hooks...
+(1/2) Reloading user manager configuration...
+(2/2) Arming ConditionNeedsUpdate...
+Sync Explicit (1): inxi-3.3.38.1-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)  New Version  Net Change  Download Size
+
+extra/inxi   3.3.38.1-1     1.34 MiB       0.34 MiB
+
+Total Download Size:   0.34 MiB
+Total Installed Size:  1.34 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ inxi-3.3.38.1-1-any downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing inxi...
+Optional dependencies for inxi
+    bind: dig: -i wlan IP
+    binutils: strings: -I sysvinit version [installed]
+    bluez-tools: bt-adapter: -E bluetooth data (if no hciconfig)
+    curl: -i (if no dig); -w,-W; -U [installed]
+    dmidecode: -M if no sys machine data; -m
+    doas: -Dx hddtemp-user; -o file-user (alt for sudo)
+    file: -o unmounted file system (if no lsblk) [installed]
+    freeipmi: ipmi-sensors: -s IPMI sensors (servers)
+    hddtemp: -Dx show hdd temp, if no drivetemp module
+    iproute2: ip: -i ip LAN [installed]
+    kmod: modinfo: Ax; -Nx module version [installed]
+    ipmitool: -s IPMI sensors (servers)
+    lvm2: lvs: -L LVM data
+    lm_sensors: sensors: -s sensors output [installed]
+    mdadm: -Ra advanced mdraid data [installed]
+    mesa-utils: glxinfo: -G (X) glx info
+    net-tools: ifconfig: -i ip LAN (deprecated)
+    perl-cpanel-json-xs: Cpanel::JSON::XS: --output json (faster than JSON::PP)
+    perl-json-xs: JSON::XS: --output json (legacy)
+    perl-io-socket-ssl: IO::Socket::SSL: -U; -w,-W; -i (if dig not installed)
+    smartmontools: smartctl: -Da advanced data
+    systemd-sysvcompat: -I runlevel [installed]
+    sudo: -Dx hddtemp-user; -o file-user [installed]
+    tree: --debugger 20,21 /sys tree [installed]
+    upower: -sx attached device battery info [installed]
+    usbutils: lsusb: -A usb audio; -J (optional); -N usb networking [installed]
+    vulkan-tools: vulkaninfo: -G vulkan info
+    wget: -i (if no dig); -w,-W; -U [installed]
+    wmctrl: -S active window manager (fallback)
+    xorg-xdpyinfo: xdpyinfo: -G (X) Screen resolution, dpi; -Ga Screen size
+    xorg-xdriinfo: xdriinfo: -G (X) DRI driver (if missing, fallback to Xorg log)
+    xorg-xprop: xprop: -S (X) desktop data [installed]
+    xorg-xrandr: xrandr: -G (X) monitors(s) resolution; -Ga monitor data [installed]
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Sync Explicit (1): libspng-0.7.4-2
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)    New Version  Net Change  Download Size
+
+extra/libspng  0.7.4-2        0.09 MiB       0.04 MiB
+
+Total Download Size:   0.04 MiB
+Total Installed Size:  0.09 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ libspng-0.7.4-2-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing libspng...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Sync Explicit (1): python-pyquery-2.0.1-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (3)             New Version  Net Change  Download Size
+
+extra/python-cssselect  1.2.0-8        0.24 MiB       0.05 MiB
+extra/python-lxml       6.0.0-2        5.88 MiB       1.50 MiB
+extra/python-pyquery    2.0.1-1        0.26 MiB       0.05 MiB
+
+Total Download Size:   1.60 MiB
+Total Installed Size:  6.37 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ python-lxml-6.0.0-2-x86_64 downloading...
+ python-pyquery-2.0.1-1-any downloading...
+ python-cssselect-1.2.0-8-any downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing python-lxml...
+Optional dependencies for python-lxml
+    python-beautifulsoup4: support for beautifulsoup parser to parse not well formed HTML
+    python-cssselect: support for cssselect [pending]
+    python-html5lib: support for html5lib parser
+    python-lxml-docs: offline docs
+    python-lxml-html-clean: enable htmlclean feature
+installing python-cssselect...
+installing python-pyquery...
+Optional dependencies for python-pyquery
+    python-webob: query wsgi app
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Sync Explicit (1): swaync-0.12.1-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (3)             New Version  Net Change  Download Size
+
+extra/granite7          7.6.0-1        0.70 MiB       0.16 MiB
+extra/gtk4-layer-shell  1.1.1-1        0.28 MiB       0.05 MiB
+extra/swaync            0.12.1-1       0.68 MiB       0.20 MiB
+
+Total Download Size:   0.42 MiB
+Total Installed Size:  1.66 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ swaync-0.12.1-1-x86_64 downloading...
+ granite7-7.6.0-1-x86_64 downloading...
+ gtk4-layer-shell-1.1.1-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing gtk4-layer-shell...
+installing granite7...
+installing swaync...
+Optional dependencies for swaync
+    gvfs: Get album art in MPRIS widget [installed]
+:: Running post-transaction hooks...
+(1/5) Reloading user manager configuration...
+(2/5) Arming ConditionNeedsUpdate...
+(3/5) Compiling GSettings XML schema files...
+(4/5) Updating icon theme caches...
+(5/5) Updating the desktop file MIME type cache...
+:: [1mThere are 2 providers available for cargo:
+:: [1mRepository extra
+    [0m1) rust 2) rustup [0m
+
+Enter a number (default=1): 
+
+AUR Explicit (1): wallust-3.4.0-1
+Sync Make Dependency (1): rust-1:1.89.0-1
+:: [1m(1/1) Downloaded PKGBUILD: wallust[0m
+  1 wallust                                  (Build Files Exist)
+==> Packages to cleanBuild?
+==> [N]one [A]ll [Ab]ort [I]nstalled [No]tInstalled or (1 2 3, 1-3, ^4)
+==> 
+  1 wallust                                  (Build Files Exist)
+==> Diffs to show?
+==> [N]one [A]ll [Ab]ort [I]nstalled [No]tInstalled or (1 2 3, 1-3, ^4)
+==> 
+==> Making package: wallust 3.4.0-1 (Sat 16 Aug 2025 07:33:41 AM MSK)
+==> Retrieving sources...
+  -> Downloading wallust-3.4.0.tar.gz...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 27  145k   27 41621    0     0  56848      0  0:00:02 --:--:--  0:00:02 56781100  145k  100  145k    0     0   175k      0 --:--:-- --:--:-- --:--:--  174k
+==> WARNING: Skipping verification of source file PGP signatures.
+==> Validating source files with sha256sums...
+    wallust-3.4.0.tar.gz ... Passed
+:: [1m(1/1) Parsing SRCINFO: wallust[0m
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)  New Version  Net Change
+
+extra/rust   1:1.89.0-1   263.22 MiB
+
+Total Installed Size:  263.22 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing rust...
+Optional dependencies for rust
+    gdb: rust-gdb script
+    lldb: rust-lldb script
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+==> Making package: wallust 3.4.0-1 (Sat 16 Aug 2025 07:33:45 AM MSK)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Found wallust-3.4.0.tar.gz
+==> Validating source files with sha256sums...
+    wallust-3.4.0.tar.gz ... Passed
+==> Removing existing $srcdir/ directory...
+==> Extracting sources...
+  -> Extracting wallust-3.4.0.tar.gz with bsdtar
+==> Starting prepare()...
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded strum_macros v0.24.3
+  Downloaded dirs v6.0.0
+  Downloaded lazy_static v1.5.0
+  Downloaded itoa v1.0.15
+  Downloaded fxhash v0.2.1
+  Downloaded darling_macro v0.20.11
+  Downloaded option-ext v0.2.0
+  Downloaded num_threads v0.1.7
+  Downloaded zerofrom v0.1.6
+  Downloaded profiling-procmacros v1.0.17
+  Downloaded maybe-rayon v0.1.1
+  Downloaded noop_proc_macro v0.3.0
+  Downloaded simd_helpers v0.1.0
+  Downloaded loop9 v0.1.5
+  Downloaded color_quant v1.1.0
+  Downloaded arg_enum_proc_macro v0.3.4
+  Downloaded dirs-sys v0.5.0
+  Downloaded strum v0.24.1
+  Downloaded by_address v1.2.1
+  Downloaded rand_chacha v0.9.0
+  Downloaded ppv-lite86 v0.2.21
+  Downloaded adler2 v2.0.1
+  Downloaded shellexpand v3.1.1
+  Downloaded memo-map v0.3.3
+  Downloaded new_debug_unreachable v1.0.6
+  Downloaded num-derive v0.4.2
+  Downloaded lebe v0.5.2
+  Downloaded equator-macro v0.4.2
+  Downloaded self_cell v1.2.0
+  Downloaded approx v0.5.1
+  Downloaded fast-srgb8 v1.0.0
+  Downloaded dyn-clone v1.0.19
+  Downloaded ref-cast-impl v1.0.24
+  Downloaded ref-cast v1.0.24
+  Downloaded autocfg v1.5.0
+  Downloaded palette_derive v0.7.6
+  Downloaded documented v0.9.2
+  Downloaded document-features v0.2.11
+  Downloaded rgb v0.8.52
+  Downloaded wasm-bindgen-macro v0.2.100
+  Downloaded either v1.15.0
+  Downloaded ravif v0.11.20
+  Downloaded equivalent v1.0.2
+  Downloaded zune-core v0.4.12
+  Downloaded paste v1.0.15
+  Downloaded profiling v1.0.17
+  Downloaded thiserror-impl v1.0.69
+  Downloaded avif-serialize v0.8.5
+  Downloaded num-integer v0.1.46
+  Downloaded equator v0.4.2
+  Downloaded aligned-vec v0.6.4
+  Downloaded wasm-bindgen-shared v0.2.100
+  Downloaded bit_field v0.10.2
+  Downloaded glob v0.3.2
+  Downloaded byteorder-lite v0.1.0
+  Downloaded strum v0.27.1
+  Downloaded rand_core v0.9.3
+  Downloaded byteorder v1.5.0
+  Downloaded v_frame v0.3.9
+  Downloaded crossbeam-deque v0.8.6
+  Downloaded simd-adler32 v0.3.7
+  Downloaded owo-colors v4.2.2
+  Downloaded thiserror v1.0.69
+  Downloaded serde_derive_internals v0.29.1
+  Downloaded kmeans_colors v0.7.0
+  Downloaded wasm-bindgen-macro-support v0.2.100
+  Downloaded bitstream-io v2.6.0
+  Downloaded num-rational v0.4.2
+  Downloaded quick-error v2.0.1
+  Downloaded gif v0.13.3
+  Downloaded wasm-bindgen-backend v0.2.100
+  Downloaded fdeflate v0.3.7
+  Downloaded phf_generator v0.12.1
+  Downloaded documented-macros v0.9.2
+  Downloaded plotters-svg v0.3.7
+  Downloaded wasm-bindgen v0.2.100
+  Downloaded av1-grain v0.2.4
+  Downloaded crossbeam-utils v0.8.21
+  Downloaded crc32fast v1.5.0
+  Downloaded phf_shared v0.12.1
+  Downloaded zune-inflate v0.2.54
+  Downloaded built v0.7.7
+  Downloaded schemars_derive v1.0.4
+  Downloaded plotters-backend v0.3.7
+  Downloaded num-traits v0.2.19
+  Downloaded convert_case v0.8.0
+  Downloaded bytemuck v1.23.1
+  Downloaded arrayvec v0.7.6
+  Downloaded weezl v0.1.10
+  Downloaded crossbeam-epoch v0.9.18
+  Downloaded qoi v0.4.1
+  Downloaded anstyle-query v1.1.3
+  Downloaded ciborium-io v0.2.2
+  Downloaded litrs v0.4.1
+  Downloaded criterion-plot v0.5.0
+  Downloaded cast v0.3.0
+  Downloaded oorandom v11.1.5
+  Downloaded half v2.6.0
+  Downloaded anstyle v1.0.11
+  Downloaded colorchoice v1.0.4
+  Downloaded ciborium-ll v0.2.2
+  Downloaded clap_mangen v0.2.28
+  Downloaded anstyle-parse v0.2.7
+  Downloaded tinytemplate v1.2.1
+  Downloaded is_terminal_polyfill v1.70.1
+  Downloaded utf8parse v0.2.2
+  Downloaded clap_lex v0.7.5
+  Downloaded minimal-lexical v0.2.1
+  Downloaded bumpalo v3.19.0
+  Downloaded schemars v1.0.4
+  Downloaded anstream v0.6.19
+  Downloaded rand v0.9.1
+  Downloaded anes v0.1.6
+  Downloaded ciborium v0.2.2
+  Downloaded clap_complete v4.5.55
+  Downloaded fast_image_resize v5.1.4
+  Downloaded itertools v0.14.0
+  Downloaded rayon v1.10.0
+  Downloaded exr v1.73.0
+  Downloaded unicode-segmentation v1.12.0
+  Downloaded zerocopy v0.8.26
+  Downloaded derive_builder_macro v0.20.2
+  Downloaded image v0.25.6
+  Downloaded plotters v0.3.7
+  Downloaded criterion v0.6.0
+  Downloaded palette v0.7.6
+  Downloaded minijinja v2.11.0
+  Downloaded png v0.17.16
+  Downloaded nom v7.1.3
+  Downloaded itertools v0.13.0
+  Downloaded clap_derive v4.5.41
+  Downloaded num-bigint v0.4.6
+  Downloaded clap v4.5.41
+  Downloaded jpeg-decoder v0.3.2
+  Downloaded rustversion v1.0.21
+  Downloaded flate2 v1.1.2
+  Downloaded zune-jpeg v0.4.19
+  Downloaded image-webp v0.2.3
+  Downloaded imgref v1.11.0
+  Downloaded miniz_oxide v0.8.9
+  Downloaded clap_builder v4.5.41
+  Downloaded optfield v0.4.0
+  Downloaded rav1e v0.7.1
+  Downloaded roff v0.2.2
+  Downloaded yoke v0.8.0
+  Downloaded time-core v0.1.4
+  Downloaded tiff v0.9.1
+  Downloaded percent-encoding v2.3.1
+  Downloaded zerofrom-derive v0.1.6
+  Downloaded zerovec-derive v0.11.1
+  Downloaded utf8_iter v1.0.4
+  Downloaded cargo-platform v0.1.9
+  Downloaded idna_adapter v1.2.1
+  Downloaded writeable v0.6.1
+  Downloaded potential_utf v0.1.2
+  Downloaded pkg-config v0.3.32
+  Downloaded yoke-derive v0.8.0
+  Downloaded form_urlencoded v1.2.1
+  Downloaded tinystr v0.8.1
+  Downloaded serde_spanned v1.0.0
+  Downloaded toml_datetime v0.7.0
+  Downloaded deranged v0.4.0
+  Downloaded synstructure v0.13.2
+  Downloaded heck v0.5.0
+  Downloaded spinners v4.1.1
+  Downloaded fastrand v2.3.0
+  Downloaded cfg-if v1.0.1
+  Downloaded shlex v1.3.0
+  Downloaded displaydoc v0.2.5
+  Downloaded toml_writer v1.0.2
+  Downloaded ryu v1.0.20
+  Downloaded derive_builder v0.20.2
+  Downloaded thiserror-impl v2.0.12
+  Downloaded vergen-lib v0.1.6
+  Downloaded strsim v0.11.1
+  Downloaded quote v1.0.40
+  Downloaded derive_builder_core v0.20.2
+  Downloaded cargo_metadata v0.19.2
+  Downloaded walkdir v2.5.0
+  Downloaded semver v1.0.26
+  Downloaded dunce v1.0.5
+  Downloaded time-macros v0.2.22
+  Downloaded siphasher v1.0.1
+  Downloaded phf v0.12.1
+  Downloaded phf_macros v0.12.1
+  Downloaded stable_deref_trait v1.2.0
+  Downloaded smallvec v1.15.1
+  Downloaded litemap v0.8.0
+  Downloaded jobserver v0.1.33
+  Downloaded errno v0.3.13
+  Downloaded toml_parser v1.0.1
+  Downloaded strum_macros v0.27.1
+  Downloaded once_cell v1.21.3
+  Downloaded unicode-ident v1.0.18
+  Downloaded thiserror v2.0.12
+  Downloaded proc-macro2 v1.0.95
+  Downloaded serde_derive v1.0.219
+  Downloaded vergen v9.0.6
+  Downloaded camino v1.1.10
+  Downloaded log v0.4.27
+  Downloaded tempfile v3.20.0
+  Downloaded icu_properties v2.0.1
+  Downloaded getrandom v0.3.3
+  Downloaded icu_provider v2.0.0
+  Downloaded vergen-git2 v1.0.7
+  Downloaded anyhow v1.0.98
+  Downloaded darling v0.20.11
+  Downloaded serde v1.0.219
+  Downloaded wallust_themes v1.1.0
+  Downloaded bitflags v2.9.1
+  Downloaded toml_edit v0.23.1
+  Downloaded icu_normalizer_data v2.0.0
+  Downloaded icu_normalizer v2.0.0
+  Downloaded darling_core v0.20.11
+  Downloaded icu_collections v2.0.0
+  Downloaded icu_locale_core v2.0.0
+  Downloaded zerotrie v0.2.2
+  Downloaded memchr v2.7.5
+  Downloaded toml v0.9.2
+  Downloaded indexmap v2.10.0
+  Downloaded url v2.5.4
+  Downloaded cc v1.2.29
+  Downloaded zerovec v0.11.2
+  Downloaded idna v1.0.3
+  Downloaded time v0.3.41
+  Downloaded serde_json v1.0.140
+  Downloaded hashbrown v0.15.4
+  Downloaded icu_properties_data v2.0.1
+  Downloaded winnow v0.7.12
+  Downloaded aho-corasick v1.1.3
+  Downloaded git2 v0.20.2
+  Downloaded vcpkg v0.2.15
+  Downloaded regex v1.11.1
+  Downloaded syn v2.0.104
+  Downloaded regex-syntax v0.8.5
+  Downloaded rustix v1.0.7
+  Downloaded regex-automata v0.4.9
+  Downloaded libc v0.2.174
+  Downloaded libz-sys v1.1.22
+  Downloaded libgit2-sys v0.18.2+1.9.1
+  Downloaded linux-raw-sys v0.9.4
+==> Sources are ready.
+==> Making package: wallust 3.4.0-1 (Sat 16 Aug 2025 07:33:57 AM MSK)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> WARNING: Using existing $srcdir/ tree
+==> Starting build()...
+   Compiling proc-macro2 v1.0.95
+   Compiling unicode-ident v1.0.18
+   Compiling libc v0.2.174
+   Compiling rustversion v1.0.21
+   Compiling stable_deref_trait v1.2.0
+   Compiling serde v1.0.219
+   Compiling cfg-if v1.0.1
+   Compiling memchr v2.7.5
+   Compiling autocfg v1.5.0
+   Compiling anyhow v1.0.98
+   Compiling serde_json v1.0.140
+   Compiling itoa v1.0.15
+   Compiling crossbeam-utils v0.8.21
+   Compiling ident_case v1.0.1
+   Compiling strsim v0.11.1
+   Compiling shlex v1.3.0
+   Compiling fnv v1.0.7
+   Compiling ryu v1.0.20
+   Compiling writeable v0.6.1
+   Compiling litemap v0.8.0
+   Compiling icu_properties_data v2.0.1
+   Compiling thiserror v2.0.12
+   Compiling pkg-config v0.3.32
+   Compiling icu_normalizer_data v2.0.0
+   Compiling vcpkg v0.2.15
+   Compiling smallvec v1.15.1
+   Compiling simd-adler32 v0.3.7
+   Compiling rayon-core v1.12.1
+   Compiling either v1.15.0
+   Compiling camino v1.1.10
+   Compiling semver v1.0.26
+   Compiling adler2 v2.0.1
+   Compiling crc32fast v1.5.0
+   Compiling regex-syntax v0.8.5
+   Compiling getrandom v0.3.3
+   Compiling heck v0.5.0
+   Compiling thiserror v1.0.69
+   Compiling percent-encoding v2.3.1
+   Compiling utf8_iter v1.0.4
+   Compiling zerocopy v0.8.26
+   Compiling miniz_oxide v0.8.9
+   Compiling paste v1.0.15
+   Compiling built v0.7.7
+   Compiling form_urlencoded v1.2.1
+   Compiling arrayvec v0.7.6
+   Compiling siphasher v1.0.1
+   Compiling powerfmt v0.2.0
+   Compiling syn v1.0.109
+   Compiling minimal-lexical v0.2.1
+   Compiling num-conv v0.1.0
+   Compiling log v0.4.27
+   Compiling deranged v0.4.0
+   Compiling phf_shared v0.12.1
+   Compiling bitflags v2.9.1
+   Compiling time-core v0.1.4
+   Compiling num_threads v0.1.7
+   Compiling utf8parse v0.2.2
+   Compiling aho-corasick v1.1.3
+   Compiling fastrand v2.3.0
+   Compiling clap_lex v0.7.5
+   Compiling anstyle v1.0.11
+   Compiling num-traits v0.2.19
+   Compiling anstyle-parse v0.2.7
+   Compiling itertools v0.12.1
+   Compiling quick-error v2.0.1
+   Compiling is_terminal_polyfill v1.70.1
+   Compiling nom v7.1.3
+   Compiling phf_generator v0.12.1
+   Compiling palette v0.7.6
+   Compiling clap_builder v4.5.41
+   Compiling once_cell v1.21.3
+   Compiling by_address v1.2.1
+   Compiling quote v1.0.40
+   Compiling rav1e v0.7.1
+   Compiling flate2 v1.1.2
+   Compiling crossbeam-epoch v0.9.18
+   Compiling option-ext v0.2.0
+   Compiling anstyle-query v1.1.3
+   Compiling weezl v0.1.10
+   Compiling bitstream-io v2.6.0
+   Compiling noop_proc_macro v0.3.0
+   Compiling new_debug_unreachable v1.0.6
+   Compiling colorchoice v1.0.4
+   Compiling syn v2.0.104
+   Compiling unicode-segmentation v1.12.0
+   Compiling crossbeam-deque v0.8.6
+   Compiling vergen-lib v0.1.6
+   Compiling vergen v9.0.6
+   Compiling vergen-git2 v1.0.7
+   Compiling imgref v1.11.0
+   Compiling winnow v0.7.12
+   Compiling heck v0.4.1
+   Compiling itertools v0.14.0
+   Compiling anstream v0.6.19
+   Compiling avif-serialize v0.8.5
+   Compiling zune-inflate v0.2.54
+   Compiling simd_helpers v0.1.0
+   Compiling loop9 v0.1.5
+   Compiling fdeflate v0.3.7
+   Compiling half v2.6.0
+   Compiling jobserver v0.1.33
+   Compiling time v0.3.41
+   Compiling byteorder v1.5.0
+   Compiling convert_case v0.8.0
+   Compiling dirs-sys v0.5.0
+   Compiling owo-colors v4.2.2
+   Compiling cc v1.2.29
+   Compiling rand_core v0.9.3
+   Compiling zune-core v0.4.12
+   Compiling equivalent v1.0.2
+   Compiling jpeg-decoder v0.3.2
+   Compiling num-integer v0.1.46
+   Compiling hashbrown v0.15.4
+   Compiling rgb v0.8.52
+   Compiling byteorder-lite v0.1.0
+   Compiling rayon v1.10.0
+   Compiling toml_writer v1.0.2
+   Compiling fast-srgb8 v1.0.0
+   Compiling litrs v0.4.1
+   Compiling bit_field v0.10.2
+   Compiling lebe v0.5.2
+   Compiling color_quant v1.1.0
+   Compiling bitflags v1.3.2
+   Compiling bytemuck v1.23.1
+   Compiling png v0.17.16
+   Compiling num-bigint v0.4.6
+   Compiling image-webp v0.2.3
+   Compiling exr v1.73.0
+   Compiling gif v0.13.3
+   Compiling zune-jpeg v0.4.19
+   Compiling fxhash v0.2.1
+   Compiling dirs v6.0.0
+   Compiling regex-automata v0.4.9
+   Compiling qoi v0.4.1
+   Compiling clap v4.5.41
+   Compiling tiff v0.9.1
+   Compiling document-features v0.2.11
+   Compiling indexmap v2.10.0
+   Compiling maplit v1.0.2
+   Compiling same-file v1.0.6
+   Compiling lazy_static v1.5.0
+   Compiling memo-map v0.3.3
+   Compiling self_cell v1.2.0
+   Compiling walkdir v2.5.0
+   Compiling shellexpand v3.1.1
+   Compiling ppv-lite86 v0.2.21
+   Compiling dunce v1.0.5
+   Compiling glob v0.3.2
+   Compiling rand_chacha v0.9.0
+   Compiling toml_parser v1.0.1
+   Compiling rand v0.9.1
+   Compiling num-rational v0.4.2
+   Compiling libz-sys v1.1.22
+   Compiling libgit2-sys v0.18.2+1.9.1
+   Compiling strum_macros v0.24.3
+   Compiling regex v1.11.1
+   Compiling maybe-rayon v0.1.1
+   Compiling synstructure v0.13.2
+   Compiling darling_core v0.20.11
+   Compiling strum v0.24.1
+   Compiling spinners v4.1.1
+   Compiling serde_derive v1.0.219
+   Compiling zerofrom-derive v0.1.6
+   Compiling yoke-derive v0.8.0
+   Compiling zerovec-derive v0.11.1
+   Compiling displaydoc v0.2.5
+   Compiling thiserror-impl v2.0.12
+   Compiling equator-macro v0.4.2
+   Compiling thiserror-impl v1.0.69
+   Compiling profiling-procmacros v1.0.17
+   Compiling num-derive v0.4.2
+   Compiling arg_enum_proc_macro v0.3.4
+   Compiling strum_macros v0.27.1
+   Compiling optfield v0.4.0
+   Compiling palette_derive v0.7.6
+   Compiling phf_macros v0.12.1
+   Compiling clap_derive v4.5.41
+   Compiling profiling v1.0.17
+   Compiling phf v0.12.1
+   Compiling equator v0.4.2
+   Compiling aligned-vec v0.6.4
+   Compiling v_frame v0.3.9
+   Compiling darling_macro v0.20.11
+   Compiling fast_image_resize v5.1.4
+   Compiling av1-grain v0.2.4
+   Compiling zerofrom v0.1.6
+   Compiling yoke v0.8.0
+   Compiling zerovec v0.11.2
+   Compiling zerotrie v0.2.2
+   Compiling darling v0.20.11
+   Compiling derive_builder_core v0.20.2
+   Compiling strum v0.27.1
+   Compiling documented-macros v0.9.2
+   Compiling derive_builder_macro v0.20.2
+   Compiling tinystr v0.8.1
+   Compiling potential_utf v0.1.2
+   Compiling icu_collections v2.0.0
+   Compiling icu_locale_core v2.0.0
+   Compiling derive_builder v0.20.2
+   Compiling documented v0.9.2
+   Compiling icu_provider v2.0.0
+   Compiling icu_normalizer v2.0.0
+   Compiling icu_properties v2.0.1
+   Compiling idna_adapter v1.2.1
+   Compiling idna v1.0.3
+   Compiling url v2.5.4
+   Compiling git2 v0.20.2
+   Compiling cargo-platform v0.1.9
+   Compiling toml_datetime v0.7.0
+   Compiling serde_spanned v1.0.0
+   Compiling minijinja v2.11.0
+   Compiling toml v0.9.2
+   Compiling toml_edit v0.23.1
+   Compiling cargo_metadata v0.19.2
+   Compiling wallust_themes v1.1.0
+   Compiling ravif v0.11.20
+   Compiling image v0.25.6
+   Compiling wallust v3.4.0 (/home/pridxd/.cache/yay/wallust/src/wallust-3.4.0)
+   Compiling kmeans_colors v0.7.0
+warning: unused return value of `array::<impl [T; N]>::map` that must be used
+   --> src/colors.rs:344:9
+    |
+344 | /         [
+345 | |             //&mut self.color0,
+346 | |             &mut self.color1,
+347 | |             &mut self.color2,
+...   |
+361 | |         ].map(|i| *i = i.saturate(amount));
+    | |__________________________________________^
+    |
+    = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+344 |         let _ = [
+    |         +++++++
+
+warning: `wallust` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 3m 03s
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+  -> Removing libtool files...
+  -> Purging unwanted files...
+  -> Removing static library files...
+  -> Stripping unneeded symbols from binaries and libraries...
+  -> Compressing man and info pages...
+==> Checking for packaging issues...
+==> Creating package "wallust"...
+  -> Generating .PKGINFO file...
+  -> Generating .BUILDINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Creating package "wallust-debug"...
+  -> Generating .PKGINFO file...
+  -> Generating .BUILDINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Leaving fakeroot environment.
+==> Finished making: wallust 3.4.0-1 (Sat 16 Aug 2025 07:37:04 AM MSK)
+==> Cleaning up...
+loading packages...
+resolving dependencies...
+looking for conflicting packages...
+
+Package (2)    New Version  Net Change
+
+wallust        3.4.0-1        5.32 MiB
+wallust-debug  3.4.0-1        0.89 MiB
+
+Total Installed Size:  6.21 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing wallust...
+Optional dependencies for wallust
+    imagemagick [installed]
+installing wallust-debug...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Sync Explicit (1): xdg-user-dirs-0.18-2
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)          New Version  Net Change  Download Size
+
+extra/xdg-user-dirs  0.18-2         0.15 MiB       0.04 MiB
+
+Total Download Size:   0.04 MiB
+Total Installed Size:  0.15 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ xdg-user-dirs-0.18-2-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing xdg-user-dirs...
+Created symlink '/etc/systemd/user/default.target.wants/xdg-user-dirs-update.service' → '/usr/lib/systemd/user/xdg-user-dirs-update.service'.
+:: Running post-transaction hooks...
+(1/2) Reloading user manager configuration...
+(2/2) Arming ConditionNeedsUpdate...
+Sync Explicit (1): yad-14.1-2
+resolving dependencies...
+looking for conflicting packages...
+
+Package (2)           New Version                Net Change  Download Size
+
+extra/gtksourceview3  1:3.24.11+r30+gd880929f-1    3.91 MiB       0.59 MiB
+extra/yad             14.1-2                       0.62 MiB       0.20 MiB
+
+Total Download Size:   0.79 MiB
+Total Installed Size:  4.54 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ gtksourceview3-1:3.24.11+r30+gd880929f-1-x86_64 downloading...
+ yad-14.1-2-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing gtksourceview3...
+installing yad...
+:: Running post-transaction hooks...
+(1/4) Arming ConditionNeedsUpdate...
+(2/4) Compiling GSettings XML schema files...
+(3/4) Updating icon theme caches...
+(4/4) Updating the desktop file MIME type cache...
+Sync Explicit (1): loupe-48.1-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (2)   New Version  Net Change  Download Size
+
+extra/glycin  1.2.3-1       12.49 MiB       2.50 MiB
+extra/loupe   48.1-1         8.02 MiB       2.35 MiB
+
+Total Download Size:    4.85 MiB
+Total Installed Size:  20.51 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ glycin-1.2.3-1-x86_64 downloading...
+ loupe-48.1-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing glycin...
+Optional dependencies for glycin
+    libheif: heif/heic file support [installed]
+installing loupe...
+:: Running post-transaction hooks...
+(1/4) Arming ConditionNeedsUpdate...
+(2/4) Compiling GSettings XML schema files...
+(3/4) Updating icon theme caches...
+(4/4) Updating the desktop file MIME type cache...
+Sync Explicit (1): gnome-system-monitor-48.1-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)                 New Version  Net Change  Download Size
+
+extra/gnome-system-monitor  48.1-1         4.94 MiB       0.81 MiB
+
+Total Download Size:   0.81 MiB
+Total Installed Size:  4.94 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ gnome-system-monitor-48.1-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing gnome-system-monitor...
+:: Running post-transaction hooks...
+(1/4) Arming ConditionNeedsUpdate...
+(2/4) Compiling GSettings XML schema files...
+(3/4) Updating icon theme caches...
+(4/4) Updating the desktop file MIME type cache...
+Sync Explicit (1): mousepad-0.6.5-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (2)           New Version  Net Change  Download Size
+
+extra/gtksourceview4  4.8.4-2        7.39 MiB       0.95 MiB
+extra/mousepad        0.6.5-1        2.10 MiB       0.43 MiB
+
+Total Download Size:   1.38 MiB
+Total Installed Size:  9.48 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ gtksourceview4-4.8.4-2-x86_64 downloading...
+ mousepad-0.6.5-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing gtksourceview4...
+installing mousepad...
+Optional dependencies for mousepad
+    gspell: spell checking plugin [installed]
+    libxfce4ui: shortcuts editor plugin [installed]
+:: Running post-transaction hooks...
+(1/4) Arming ConditionNeedsUpdate...
+(2/4) Compiling GSettings XML schema files...
+(3/4) Updating icon theme caches...
+(4/4) Updating the desktop file MIME type cache...
+Sync Explicit (1): mpv-mpris-1.1-3
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)      New Version  Net Change  Download Size
+
+extra/mpv-mpris  1.1-3          0.03 MiB       0.01 MiB
+
+Total Download Size:   0.01 MiB
+Total Installed Size:  0.03 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ mpv-mpris-1.1-3-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing mpv-mpris...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+Sync Explicit (1): nvtop-3.2.0-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)  New Version  Net Change  Download Size
+
+extra/nvtop  3.2.0-1        0.17 MiB       0.07 MiB
+
+Total Download Size:   0.07 MiB
+Total Installed Size:  0.17 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ nvtop-3.2.0-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing nvtop...
+:: Running post-transaction hooks...
+(1/2) Arming ConditionNeedsUpdate...
+(2/2) Updating the desktop file MIME type cache...
+Sync Explicit (1): nwg-displays-0.3.25-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (4)         New Version  Net Change  Download Size
+
+extra/python-i3ipc  2.2.1-8        0.34 MiB       0.06 MiB
+extra/python-six    1.17.0-1       0.12 MiB       0.03 MiB
+extra/python-xlib   0.33-4         2.04 MiB       0.28 MiB
+extra/nwg-displays  0.3.25-1       0.28 MiB       0.06 MiB
+
+Total Download Size:   0.42 MiB
+Total Installed Size:  2.77 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ python-xlib-0.33-4-any downloading...
+ python-i3ipc-2.2.1-8-any downloading...
+ nwg-displays-0.3.25-1-any downloading...
+ python-six-1.17.0-1-any downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing python-six...
+installing python-xlib...
+installing python-i3ipc...
+installing nwg-displays...
+:: Running post-transaction hooks...
+(1/2) Arming ConditionNeedsUpdate...
+(2/2) Updating the desktop file MIME type cache...
+Sync Explicit (1): qalculate-gtk-5.6.0-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (1)          New Version  Net Change  Download Size
+
+extra/qalculate-gtk  5.6.0-1        6.73 MiB       2.58 MiB
+
+Total Download Size:   2.58 MiB
+Total Installed Size:  6.73 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ qalculate-gtk-5.6.0-1-x86_64 downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing qalculate-gtk...
+:: Running post-transaction hooks...
+(1/3) Arming ConditionNeedsUpdate...
+(2/3) Updating icon theme caches...
+(3/3) Updating the desktop file MIME type cache...
+Sync Explicit (1): yt-dlp-2025.07.21-1
+resolving dependencies...
+looking for conflicting packages...
+
+Package (2)           New Version   Net Change  Download Size
+
+extra/python-certifi  2025.08.03-1    0.01 MiB       0.01 MiB
+extra/yt-dlp          2025.07.21-1   31.61 MiB       4.97 MiB
+
+Total Download Size:    4.97 MiB
+Total Installed Size:  31.63 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages...
+ yt-dlp-2025.07.21-1-any downloading...
+ python-certifi-2025.08.03-1-any downloading...
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing python-certifi...
+installing yt-dlp...
+Optional dependencies for yt-dlp
+    ffmpeg: for video post-processing [installed]
+    rtmpdump: for rtmp streams support [installed]
+    atomicparsley: for embedding thumbnails into m4a files
+    aria2: for using aria2 as external downloader
+    python-mutagen: for embedding thumbnail in certain formats [installed]
+    python-pycryptodome: for decrypting AES-128 HLS streams and various other data
+    python-pycryptodomex: for decrypting AES-128 HLS streams and various other data
+    python-websockets: for downloading over websocket
+    python-brotli: brotli content encoding support
+    python-brotlicffi: brotli content encoding support
+    python-xattr: for writing xattr metadata
+    python-pyxattr: for writing xattr metadata (alternative option)
+    phantomjs: for extractors with javascript code
+    python-secretstorage: For -cookies-from-browser to access the GNOME keyring while decrypting cookies of Chromium-based browsers
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...

@@ -1,0 +1,23 @@
+👌 [32m[OK](B[m [36mПродолжаем установку PridArch...(B[m
+👌 [32m[OK](B[m Вы подтвердили выбор. Продолжаем установку [36mHyprland...(B[m
+[33m[NOTE](B[m Backing up existing configs (if any) to /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322
+[32m[OK](B[m Backed up /home/pridxd/.config/hypr -> /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322/hypr
+[32m[OK](B[m Backed up /home/pridxd/.config/waybar -> /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322/waybar
+[32m[OK](B[m Backed up /home/pridxd/.config/rofi -> /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322/rofi
+[32m[OK](B[m Backed up /home/pridxd/.config/wlogout -> /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322/wlogout
+[32m[OK](B[m Backed up /home/pridxd/.config/kitty -> /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322/kitty
+[32m[OK](B[m Backed up /home/pridxd/.config/fastfetch -> /home/pridxd/Arch-Hyprland/UserConfig-Backups/ArchHyprland_Backup_20250816_073322/fastfetch
+[34m[INFO](B[m Устанавливаем [36mдополнительные пакеты Hyprland...(B[m
+[34m[INFO](B[m Устанавливаем [36mpipewire и pipewire-audio...(B[m
+[34m[INFO](B[m Устанавливаем [36mнеобходимые шрифты...(B[m
+[34m[INFO](B[m Добавляем пользователя в группу [36minput...(B[m
+[34m[INFO](B[m Устанавливаем и настраиваем [36mSDDM...(B[m
+[34m[INFO](B[m Скачиваем и устанавливаем [36mдополнительную тему SDDM...(B[m
+[34m[INFO](B[m Устанавливаем [36mGTK темы...(B[m
+[34m[INFO](B[m Устанавливаем файловый менеджер [36mThunar...(B[m
+[34m[INFO](B[m Устанавливаем [36mquickshell (обзор рабочего стола)...(B[m
+[34m[INFO](B[m Устанавливаем [36mxdg-desktop-portal-hyprland...(B[m
+[34m[INFO](B[m Устанавливаем [36mzsh с Oh-My-Zsh...(B[m
+[34m[INFO](B[m Добавляем [36mPokemon color scripts(B[m в терминал...
+[34m[INFO](B[m Устанавливаем преднастроенные [36mHyprland dotfiles...(B[m
+[34m[INFO](B[m Применяем [36mрусскую локаль, RU/US раскладки и бинд подсказок...(B[m

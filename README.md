@@ -250,3 +250,4 @@ Or you can donate cryto on my btc wallet :)
 
 ## 🥰🥰 💖💖 👍👍👍
 [![Stargazers over time](https://starchart.cc/JaKooLit/Arch-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/Arch-Hyprland)
+# PridArch

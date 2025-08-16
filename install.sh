@@ -3,6 +3,9 @@
 
 clear
 
+# Print installer banner first
+echo "PridArchInstaller"
+
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -23,6 +26,9 @@ RESET="$(tput sgr0)"
 if [ ! -d Install-Logs ]; then
     mkdir Install-Logs
 fi
+
+# Repository root (folder of this script)
+REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/01-Hyprland-Install-Scripts-$(date +%d-%H%M%S).log"
@@ -63,6 +69,34 @@ if ! command -v whiptail >/dev/null; then
     printf "\n%.0s" {1..1}
 fi
 
+# Select installation mode
+INSTALL_MODE=$(whiptail --title "Режим установки" --radiolist "Выберите режим установки:" 16 70 3 \
+    "standard" "Обычная установка (стандартная)" ON \
+    "russian" "Установка с русской локалью и раскладкой" OFF \
+    "postsetup" "Только пост-настройка RU (без установки пакетов)" OFF \
+    3>&1 1>&2 2>&3)
+
+if [ $? -ne 0 ]; then
+    echo "❌ ${INFO} Установка отменена пользователем." | tee -a "$LOG"
+    exit 0
+fi
+
+# In post-setup mode, apply RU settings only and exit
+if [[ "$INSTALL_MODE" == "postsetup" ]]; then
+    echo "${INFO} Режим: пост-настройка. Будут применены RU локаль/раскладки и брендирование." | tee -a "$LOG"
+    # Minimal backup to repository folder
+    BACKUP_DIR="$REPO_ROOT/UserConfig-Backups/ArchHyprland_PostSetup_$(date +%Y%m%d_%H%M%S)"
+    mkdir -p "$BACKUP_DIR"
+    for p in "$HOME/.config/hypr" "$HOME/.config/waybar"; do
+        [ -e "$p" ] && cp -a "$p" "$BACKUP_DIR/" 2>/dev/null || true
+    done
+    chmod +x "$REPO_ROOT/install-scripts/ru_locale_input.sh" "$REPO_ROOT/install-scripts/post_setup.sh" 2>/dev/null || true
+    bash "$REPO_ROOT/install-scripts/ru_locale_input.sh"
+    bash "$REPO_ROOT/install-scripts/post_setup.sh"
+    whiptail --title "Готово" --msgbox "Пост-настройка завершена." 10 50
+    exit 0
+fi
+
 clear
 
 printf "\n%.0s" {1..2}  
@@ -74,22 +108,20 @@ echo -e "\e[35m
 printf "\n%.0s" {1..1} 
 
 # Welcome message using whiptail (for displaying information)
-whiptail --title "KooL Arch-Hyprland (2025) Install Script" \
-    --msgbox "Welcome to KooL Arch-Hyprland (2025) Install Script!!!\n\n\
-ATTENTION: Run a full system update and Reboot first !!! (Highly Recommended)\n\n\
-NOTE: If you are installing on a VM, ensure to enable 3D acceleration else Hyprland may NOT start!" \
-    15 80
+whiptail --title "PridArch Установщик" \
+    --msgbox "Добро пожаловать в установщик PridArch!\n\nМы установим и настроим всё за вас!\n\nВ случае конфликтов бэкап системы останется в папке с нашим пакетом, удачи!" \
+    14 80
 
 # Ask if the user wants to proceed
-if ! whiptail --title "Proceed with Installation?" \
-    --yesno "Would you like to proceed?" 7 50; then
+if ! whiptail --title "Продолжить установку?" \
+    --yesno "Режим: ${INSTALL_MODE}\n\nПродолжить установку?" 8 50; then
     echo -e "\n"
-    echo "❌ ${INFO} You 🫵 chose ${YELLOW}NOT${RESET} to proceed. ${YELLOW}Exiting...${RESET}" | tee -a "$LOG"
+    echo "❌ ${INFO} Вы выбрали ${YELLOW}НЕ ПРОДОЛЖАТЬ${RESET}. ${YELLOW}Выход...${RESET}" | tee -a "$LOG"
     echo -e "\n" 
     exit 1
 fi
 
-echo "👌 ${OK} 🇵🇭 ${MAGENTA}KooL..${RESET} ${SKY_BLUE}lets continue with the installation...${RESET}" | tee -a "$LOG"
+echo "👌 ${OK} ${SKY_BLUE}Продолжаем установку PridArch...${RESET}" | tee -a "$LOG"
 
 sleep 1
 printf "\n%.0s" {1..1}
@@ -111,13 +143,38 @@ execute_script() {
     if [ -f "$script_path" ]; then
         chmod +x "$script_path"
         if [ -x "$script_path" ]; then
-            env "$script_path"
+            bash "$script_path"
         else
             echo "Failed to make script '$script' executable."
         fi
     else
         echo "Script '$script' not found in '$script_directory'."
     fi
+}
+
+# Backup existing user configs to avoid conflicts with other packages
+backup_existing_configs() {
+    backup_root="$REPO_ROOT/UserConfig-Backups/ArchHyprland_Backup_$(date +%Y%m%d_%H%M%S)"
+    mkdir -p "$backup_root"
+    paths_to_backup=(
+        "$HOME/.config/hypr"
+        "$HOME/.config/waybar"
+        "$HOME/.config/rofi"
+        "$HOME/.config/wlogout"
+        "$HOME/.config/swaync"
+        "$HOME/.config/kitty"
+        "$HOME/.config/fastfetch"
+    )
+    echo "${NOTE} Backing up existing configs (if any) to $backup_root" | tee -a "$LOG"
+    for p in "${paths_to_backup[@]}"; do
+        if [ -e "$p" ]; then
+            base_name=$(basename "$p")
+            dest="$backup_root/$base_name"
+            if cp -a "$p" "$dest" 2>/dev/null; then
+                echo "${OK} Backed up $p -> $dest" | tee -a "$LOG"
+            fi
+        fi
+    done
 }
 
 
@@ -155,37 +212,37 @@ fi
 # Check if yay or paru is installed
 echo "${INFO} - Checking if yay or paru is installed"
 if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
-    echo "${CAT} - Neither yay nor paru found. Asking 🗣️ USER to select..."
+    echo "${CAT} - Ни yay, ни paru не найдены. Предложим выбрать..."
     while true; do
-        aur_helper=$(whiptail --title "Neither Yay nor Paru is installed" --checklist "Neither Yay nor Paru is installed. Choose one AUR.\n\nNOTE: Select only 1 AUR helper!\nINFO: spacebar to select" 12 60 2 \
-            "yay" "AUR Helper yay" "OFF" \
-            "paru" "AUR Helper paru" "OFF" \
+        aur_helper=$(whiptail --title "Не установлен yay или paru" --checklist "Выберите один AUR-помощник.\n\nПРИМЕЧАНИЕ: Выберите ровно одного помощника!\nИНФО: пробел — выбрать" 12 60 2 \
+            "yay" "AUR-помощник yay" "OFF" \
+            "paru" "AUR-помощник paru" "OFF" \
             3>&1 1>&2 2>&3)
 
         if [ $? -ne 0 ]; then  
-            echo "❌ ${INFO} You cancelled the selection. ${YELLOW}Goodbye!${RESET}" | tee -a "$LOG"
+            echo "❌ ${INFO} Вы отменили выбор. ${YELLOW}До свидания!${RESET}" | tee -a "$LOG"
             exit 0 
         fi
 
         if [ -z "$aur_helper" ]; then
-            whiptail --title "Error" --msgbox "You must select at least one AUR helper to proceed." 10 60 2
+            whiptail --title "Ошибка" --msgbox "Нужно выбрать хотя бы одного AUR-помощника для продолжения." 10 60 2
             continue 
         fi
 
-        echo "${INFO} - You selected: $aur_helper as your AUR helper"  | tee -a "$LOG"
+        echo "${INFO} - Вы выбрали: $aur_helper в качестве AUR-помощника"  | tee -a "$LOG"
 
         aur_helper=$(echo "$aur_helper" | tr -d '"')
 
         # Check if multiple helpers were selected
         if [[ $(echo "$aur_helper" | wc -w) -ne 1 ]]; then
-            whiptail --title "Error" --msgbox "You must select exactly one AUR helper." 10 60 2
+            whiptail --title "Ошибка" --msgbox "Нужно выбрать ровно одного AUR-помощника." 10 60 2
             continue  
         else
             break 
         fi
     done
 else
-    echo "${NOTE} - AUR helper is already installed. Skipping AUR helper selection."
+    echo "${NOTE} - AUR-помощник уже установлен. Пропускаем выбор."
 fi
 
 # List of services to check for active login managers
@@ -211,15 +268,15 @@ if check_services_running; then
     active_list=$(printf "%s\n" "${active_services[@]}")
 
     # Display the active login manager(s) in the whiptail message box
-    whiptail --title "Active non-SDDM login manager(s) detected" \
-        --msgbox "The following login manager(s) are active:\n\n$active_list\n\nIf you want to install SDDM and SDDM theme, stop and disable the active services above, reboot before running this script\n\nYour option to install SDDM and SDDM theme has now been removed\n\n- Ja " 23 80
+    whiptail --title "Обнаружены активные менеджеры входа (не SDDM)" \
+        --msgbox "Обнаружены активные менеджеры входа:\n\n$active_list\n\nЕсли хотите установить SDDM и тему SDDM, остановите и отключите эти сервисы, затем перезагрузитесь перед запуском скрипта.\n\nОпция установки SDDM и темы SDDM временно недоступна." 20 80
 fi
 
 # Check if NVIDIA GPU is detected
 nvidia_detected=false
 if lspci | grep -i "nvidia" &> /dev/null; then
     nvidia_detected=true
-    whiptail --title "NVIDIA GPU Detected" --msgbox "NVIDIA GPU detected in your system.\n\nNOTE: The script will install nvidia-dkms, nvidia-utils, and nvidia-settings if you chose to configure." 12 60
+    whiptail --title "Обнаружена видеокарта NVIDIA" --msgbox "В системе обнаружена NVIDIA GPU.\n\nПримечание: при выборе соответствующей опции будут установлены nvidia-dkms, nvidia-utils и nvidia-settings." 12 60
 fi
 
 # Initialize the options array for whiptail checklist
@@ -239,7 +296,7 @@ fi
 input_group_detected=false
 if ! groups "$(whoami)" | grep -q '\binput\b'; then
     input_group_detected=true
-    whiptail --title "Input Group" --msgbox "You are not currently in the input group.\n\nAdding you to the input group might be necessary for the Waybar keyboard-state functionality." 12 60
+    whiptail --title "Группа input" --msgbox "Вы сейчас не состоите в группе input.\n\nДобавление в эту группу может быть нужно для корректной работы индикатора раскладки Waybar." 12 60
 fi
 
 # Add 'input_group' option if necessary
@@ -252,22 +309,22 @@ fi
 # Conditionally add SDDM and SDDM theme options if no active login manager is found
 if ! check_services_running; then
     options_command+=(
-        "sddm" "Install & configure SDDM login manager?" "OFF"
-        "sddm_theme" "Download & Install Additional SDDM theme?" "OFF"
+        "sddm" "Установить и настроить менеджер входа SDDM?" "OFF"
+        "sddm_theme" "Скачать и установить дополнительную тему SDDM?" "OFF"
     )
 fi
 
 # Add the remaining static options
 options_command+=(
-    "gtk_themes" "Install GTK themes? (required for Dark/Light function)" "OFF"
-    "bluetooth" "Do you want script to configure Bluetooth?" "OFF"
-    "thunar" "Do you want Thunar file manager to be installed?" "OFF"
-    "quickshell" "Install quickshell for Desktop-Like Overview?" "OFF"
-    "xdph" "Install XDG-DESKTOP-PORTAL-HYPRLAND (for screen share)?" "OFF"
-    "zsh" "Install zsh shell with Oh-My-Zsh?" "OFF"
-    "pokemon" "Add Pokemon color scripts to your terminal?" "OFF"
-    "rog" "Are you installing on Asus ROG laptops?" "OFF"
-    "dots" "Download and install pre-configured KooL Hyprland dotfiles?" "OFF"
+    "gtk_themes" "Установить GTK темы? (для функций Светлая/Тёмная)" "OFF"
+    "bluetooth" "Настроить Bluetooth?" "OFF"
+    "thunar" "Установить файловый менеджер Thunar?" "OFF"
+    "quickshell" "Установить quickshell для обзора рабочего стола?" "OFF"
+    "xdph" "Установить XDG-DESKTOP-PORTAL-HYPRLAND (шэринг экрана)?" "OFF"
+    "zsh" "Установить zsh и Oh-My-Zsh?" "OFF"
+    "pokemon" "Добавить Pokemon color scripts в терминал?" "OFF"
+    "rog" "Настройка для ноутбуков Asus ROG?" "OFF"
+    "dots" "Скачать и установить преднастроенные Hyprland dotfiles?" "OFF"
 )
 
 # Capture the selected options before the while loop starts
@@ -283,7 +340,7 @@ while true; do
 
     # If no option was selected, notify and restart the selection
     if [ -z "$selected_options" ]; then
-        whiptail --title "Warning" --msgbox "No options were selected. Please select at least one option." 10 60
+        whiptail --title "Предупреждение" --msgbox "Ни одна опция не выбрана. Пожалуйста, выберите хотя бы одну опцию." 10 60
         continue  # Return to selection if no options selected
     fi
 
@@ -305,33 +362,33 @@ while true; do
     # If "dots" is not selected, show a note and ask the user to proceed or return to choices
     if [[ "$dots_selected" == "OFF" ]]; then
         # Show a note about not selecting the "dots" option
-        if ! whiptail --title "KooL Hyprland Dot Files" --yesno \
-        "You have not selected to install the pre-configured KooL Hyprland dotfiles.\n\nKindly NOTE that if you proceed without Dots, Hyprland will start with default vanilla Hyprland configuration and I won't be able to give you support.\n\nWould you like to continue install without KooL Hyprland Dots or return to choices/options?" \
-        --yes-button "Continue" --no-button "Return" 15 90; then
-            echo "🔙 Returning to options..." | tee -a "$LOG"
+        if ! whiptail --title "Dotfiles Hyprland" --yesno \
+        "Вы не выбрали установку преднастроенных Hyprland dotfiles.\n\nЕсли продолжите без dotfiles, Hyprland запустится с базовой конфигурацией по умолчанию.\n\nПродолжить без dotfiles или вернуться к выбору опций?" \
+        --yes-button "Продолжить" --no-button "Вернуться" 13 90; then
+            echo "🔙 Возврат к опциям..." | tee -a "$LOG"
             continue
         else
             # User chose to continue
-            echo "${INFO} ⚠️ Continuing WITHOUT the dotfiles installation..." | tee -a "$LOG"
+            echo "${INFO} ⚠️ Продолжаем БЕЗ установки dotfiles..." | tee -a "$LOG"
 			printf "\n%.0s" {1..1}
         fi
     fi
 
     # Prepare the confirmation message
-    confirm_message="You have selected the following options:\n\n"
+    confirm_message="Вы выбрали следующие опции:\n\n"
     for option in "${options[@]}"; do
         confirm_message+=" - $option\n"
     done
-    confirm_message+="\nAre you happy with these choices?"
+    confirm_message+="\nПодтвердить выбор?"
 
     # Confirmation prompt
-    if ! whiptail --title "Confirm Your Choices" --yesno "$(printf "%s" "$confirm_message")" 25 80; then
+    if ! whiptail --title "Подтверждение выбора" --yesno "$(printf "%s" "$confirm_message")" 25 80; then
         echo -e "\n"
-        echo "❌ ${SKY_BLUE}You're not 🫵 happy${RESET}. ${YELLOW}Returning to options...${RESET}" | tee -a "$LOG"
+        echo "❌ ${SKY_BLUE}Возврат к опциям...${RESET}" | tee -a "$LOG"
         continue 
     fi
 
-    echo "👌 ${OK} You confirmed your choices. Proceeding with ${SKY_BLUE}KooL 🇵🇭 Hyprland Installation...${RESET}" | tee -a "$LOG"
+    echo "👌 ${OK} Вы подтвердили выбор. Продолжаем установку ${SKY_BLUE}Hyprland...${RESET}" | tee -a "$LOG"
     break  
 done
 
@@ -352,20 +409,23 @@ fi
 
 sleep 1
 
+# Backup existing configs before install to avoid conflicts
+backup_existing_configs
+
 # Run the Hyprland related scripts
-echo "${INFO} Installing ${SKY_BLUE}KooL Hyprland additional packages...${RESET}" | tee -a "$LOG"
+echo "${INFO} Устанавливаем ${SKY_BLUE}дополнительные пакеты Hyprland...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "01-hypr-pkgs.sh"
 
-echo "${INFO} Installing ${SKY_BLUE}pipewire and pipewire-audio...${RESET}" | tee -a "$LOG"
+echo "${INFO} Устанавливаем ${SKY_BLUE}pipewire и pipewire-audio...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "pipewire.sh"
 
-echo "${INFO} Installing ${SKY_BLUE}necessary fonts...${RESET}" | tee -a "$LOG"
+echo "${INFO} Устанавливаем ${SKY_BLUE}необходимые шрифты...${RESET}" | tee -a "$LOG"
 sleep 1
 execute_script "fonts.sh"
 
-echo "${INFO} Installing ${SKY_BLUE}Hyprland...${RESET}"
+echo "${INFO} Устанавливаем ${SKY_BLUE}Hyprland...${RESET}"
 sleep 1
 execute_script "hyprland.sh"
 
@@ -381,64 +441,64 @@ for option in "${options[@]}"; do
         sddm)
             if check_services_running; then
                 active_list=$(printf "%s\n" "${active_services[@]}")
-                whiptail --title "Error" --msgbox "One of the following login services is running:\n$active_list\n\nPlease stop & disable it or DO not choose SDDM." 12 60
+                whiptail --title "Ошибка" --msgbox "Один из следующих менеджеров входа запущен:\n$active_list\n\nОстановите и отключите его или не выбирайте SDDM." 12 60
                 exec "$0"  
             else
-                echo "${INFO} Installing and configuring ${SKY_BLUE}SDDM...${RESET}" | tee -a "$LOG"
+                echo "${INFO} Устанавливаем и настраиваем ${SKY_BLUE}SDDM...${RESET}" | tee -a "$LOG"
                 execute_script "sddm.sh"
             fi
             ;;
         nvidia)
-            echo "${INFO} Configuring ${SKY_BLUE}nvidia stuff${RESET}" | tee -a "$LOG"
+            echo "${INFO} Настраиваем ${SKY_BLUE}NVIDIA${RESET}" | tee -a "$LOG"
             execute_script "nvidia.sh"
             ;;
         nouveau)
-            echo "${INFO} blacklisting ${SKY_BLUE}nouveau${RESET}"
+            echo "${INFO} Блокируем драйвер ${SKY_BLUE}nouveau${RESET}"
             execute_script "nvidia_nouveau.sh" | tee -a "$LOG"
             ;;
         gtk_themes)
-            echo "${INFO} Installing ${SKY_BLUE}GTK themes...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем ${SKY_BLUE}GTK темы...${RESET}" | tee -a "$LOG"
             execute_script "gtk_themes.sh"
             ;;
         input_group)
-            echo "${INFO} Adding user into ${SKY_BLUE}input group...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Добавляем пользователя в группу ${SKY_BLUE}input...${RESET}" | tee -a "$LOG"
             execute_script "InputGroup.sh"
             ;;
         quickshell)
-            echo "${INFO} Installing ${SKY_BLUE}quickshell for Desktop Overview...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем ${SKY_BLUE}quickshell (обзор рабочего стола)...${RESET}" | tee -a "$LOG"
             execute_script "quickshell.sh"
             ;;
         xdph)
-            echo "${INFO} Installing ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем ${SKY_BLUE}xdg-desktop-portal-hyprland...${RESET}" | tee -a "$LOG"
             execute_script "xdph.sh"
             ;;
         bluetooth)
-            echo "${INFO} Configuring ${SKY_BLUE}Bluetooth...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Настраиваем ${SKY_BLUE}Bluetooth...${RESET}" | tee -a "$LOG"
             execute_script "bluetooth.sh"
             ;;
         thunar)
-            echo "${INFO} Installing ${SKY_BLUE}Thunar file manager...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем файловый менеджер ${SKY_BLUE}Thunar...${RESET}" | tee -a "$LOG"
             execute_script "thunar.sh"
             execute_script "thunar_default.sh"
             ;;
         sddm_theme)
-            echo "${INFO} Downloading & Installing ${SKY_BLUE}Additional SDDM theme...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Скачиваем и устанавливаем ${SKY_BLUE}дополнительную тему SDDM...${RESET}" | tee -a "$LOG"
             execute_script "sddm_theme.sh"
             ;;
         zsh)
-            echo "${INFO} Installing ${SKY_BLUE}zsh with Oh-My-Zsh...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем ${SKY_BLUE}zsh с Oh-My-Zsh...${RESET}" | tee -a "$LOG"
             execute_script "zsh.sh"
             ;;
         pokemon)
-            echo "${INFO} Adding ${SKY_BLUE}Pokemon color scripts to terminal...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Добавляем ${SKY_BLUE}Pokemon color scripts${RESET} в терминал..." | tee -a "$LOG"
             execute_script "zsh_pokemon.sh"
             ;;
         rog)
-            echo "${INFO} Installing ${SKY_BLUE}ROG laptop packages...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем пакеты для ноутбуков ${SKY_BLUE}ROG...${RESET}" | tee -a "$LOG"
             execute_script "rog.sh"
             ;;
         dots)
-            echo "${INFO} Installing pre-configured ${SKY_BLUE}KooL Hyprland dotfiles...${RESET}" | tee -a "$LOG"
+            echo "${INFO} Устанавливаем преднастроенные ${SKY_BLUE}Hyprland dotfiles...${RESET}" | tee -a "$LOG"
             execute_script "dotfiles-main.sh"
             ;;
         *)
@@ -446,6 +506,16 @@ for option in "${options[@]}"; do
             ;;
     esac
 done
+
+if [[ "$INSTALL_MODE" == "russian" ]]; then
+    # Apply Russian locale, keyboard layouts, and keybind hints
+    echo "${INFO} Применяем ${SKY_BLUE}русскую локаль, RU/US раскладки и бинд подсказок...${RESET}" | tee -a "$LOG"
+    execute_script "ru_locale_input.sh"
+fi
+
+# Post-setup adjustments (common)
+echo "${INFO} Выполняем ${SKY_BLUE}пост-настройку PridArch${RESET}" | tee -a "$LOG"
+execute_script "post_setup.sh"
 
 sleep 1
 # copy fastfetch config if arch.png is not present
@@ -462,42 +532,42 @@ printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
-    printf "\n ${OK} 👌 Hyprland is installed. However, some essential packages may not be installed. Please see above!"
-    printf "\n${CAT} Ignore this message if it states ${YELLOW}All essential packages${RESET} are installed as per above\n"
+    printf "\n ${OK} 👌 Hyprland установлен. Некоторые необходимые пакеты могут отсутствовать — смотрите выше!"
+    printf "\n${CAT} Игнорируйте это сообщение, если выше указано, что ${YELLOW}все необходимые пакеты${RESET} установлены.\n"
     sleep 2
     printf "\n%.0s" {1..2}
 
-    printf "${SKY_BLUE}Thank you${RESET} 🫰 for using 🇵🇭 ${MAGENTA}KooL's Hyprland Dots${RESET}. ${YELLOW}Enjoy and Have a good day!${RESET}"
+    printf "${SKY_BLUE}Спасибо${RESET} за использование ${MAGENTA}Hyprland Dots${RESET}. ${YELLOW}Хорошего дня!${RESET}"
     printf "\n%.0s" {1..2}
 
-    printf "\n${NOTE} You can start Hyprland by typing ${SKY_BLUE}Hyprland${RESET} (IF SDDM is not installed) (note the capital H!).\n"
-    printf "\n${NOTE} However, it is ${YELLOW}highly recommended to reboot${RESET} your system.\n\n"
+    printf "\n${NOTE} Запустить Hyprland можно командой ${SKY_BLUE}Hyprland${RESET} (если SDDM не установлен).\n"
+    printf "\n${NOTE} ${YELLOW}Настоятельно рекомендуется перезагрузить${RESET} систему.\n\n"
 
     while true; do
-        echo -n "${CAT} Would you like to reboot now? (y/n): "
+        echo -n "${CAT} Перезагрузить сейчас? (y/n): "
         read HYP
         HYP=$(echo "$HYP" | tr '[:upper:]' '[:lower:]')
 
         if [[ "$HYP" == "y" || "$HYP" == "yes" ]]; then
-            echo "${INFO} Rebooting now..."
+            echo "${INFO} Перезагрузка..."
             systemctl reboot 
             break
         elif [[ "$HYP" == "n" || "$HYP" == "no" ]]; then
-            echo "👌 ${OK} You chose NOT to reboot"
+            echo "👌 ${OK} Вы выбрали не перезагружаться сейчас"
             printf "\n%.0s" {1..1}
             # Check if NVIDIA GPU is present
             if lspci | grep -i "nvidia" &> /dev/null; then
-                echo "${INFO} HOWEVER ${YELLOW}NVIDIA GPU${RESET} detected. Reminder that you must REBOOT your SYSTEM..."
+                echo "${INFO} Обнаружена ${YELLOW}NVIDIA GPU${RESET}. Напоминание: требуется перезагрузка системы..."
                 printf "\n%.0s" {1..1}
             fi
             break
         else
-            echo "${WARN} Invalid response. Please answer with 'y' or 'n'."
+            echo "${WARN} Неверный ответ. Введите 'y' или 'n'."
         fi
     done
 else
     # Print error message if neither package is installed
-    printf "\n${WARN} Hyprland is NOT installed. Please check 00_CHECK-time_installed.log and other files in the Install-Logs/ directory..."
+    printf "\n${WARN} Hyprland НЕ установлен. Проверьте 00_CHECK-time_installed.log и другие файлы в директории Install-Logs/."
     printf "\n%.0s" {1..3}
     exit 1
 fi
