@@ -2,6 +2,8 @@
 #PRIDARCH
 Данный проект является исключительно пользовательским паком для Arch Hyprland
 Вы можете установить сборку запустив один скрипт, также присутствует изначально русская раскладка и перевод на русский также фикс панели
-git clone https://github.com/KnaZII/PridArch.git
-cd Arch-Hyprland/
-./install.sh
+#git clone https://github.com/KnaZII/PridArch.git
+
+#cd Arch-Hyprland/
+
+#./install.sh
